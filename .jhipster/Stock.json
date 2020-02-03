@@ -1,0 +1,47 @@
+{
+    "name": "Stock",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": 2,
+            "fieldValidateRulesMaxlength": 50
+        },
+        {
+            "fieldName": "quantity",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required",
+                "min"
+            ],
+            "fieldValidateRulesMin": 0
+        },
+        {
+            "fieldName": "bookStockStatus",
+            "fieldType": "BookStockStatus",
+            "fieldValues": "AVAILABLE,OUT_OF_STOCK,OUT_OF_BORROW",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200203105310",
+    "entityTableName": "stock",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": false,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": [
+        "kacetalLibraryGateway",
+        "kacetalLibraryStock"
+    ],
+    "microserviceName": "kacetalLibraryStock"
+}
