@@ -1,15 +1,30 @@
 package com.kacetal.library.stock.domain;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
-import java.io.Serializable;
-
 import com.kacetal.library.stock.domain.enumeration.BookStockStatus;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 /**
  * A Stock.
  */
+@Getter
+@Setter
+@ToString
 @Entity
 @Table(name = "stock")
 public class Stock implements Serializable {
@@ -35,40 +50,6 @@ public class Stock implements Serializable {
     @Column(name = "book_stock_status", nullable = false)
     private BookStockStatus bookStockStatus;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public BookStockStatus getBookStockStatus() {
-        return bookStockStatus;
-    }
-
-    public void setBookStockStatus(BookStockStatus bookStockStatus) {
-        this.bookStockStatus = bookStockStatus;
-    }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -83,15 +64,5 @@ public class Stock implements Serializable {
     @Override
     public int hashCode() {
         return 31;
-    }
-
-    @Override
-    public String toString() {
-        return "Stock{" +
-            "id=" + getId() +
-            ", name='" + getName() + "'" +
-            ", quantity=" + getQuantity() +
-            ", bookStockStatus='" + getBookStockStatus() + "'" +
-            "}";
     }
 }

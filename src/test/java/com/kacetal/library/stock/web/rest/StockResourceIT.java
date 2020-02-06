@@ -2,10 +2,10 @@ package com.kacetal.library.stock.web.rest;
 
 import com.kacetal.library.stock.KacetalLibraryStockApp;
 import com.kacetal.library.stock.domain.Stock;
+import com.kacetal.library.stock.domain.enumeration.BookStockStatus;
 import com.kacetal.library.stock.repository.StockRepository;
 import com.kacetal.library.stock.service.StockService;
 import com.kacetal.library.stock.web.rest.errors.ExceptionTranslator;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
@@ -25,10 +25,14 @@ import java.util.List;
 import static com.kacetal.library.stock.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.kacetal.library.stock.domain.enumeration.BookStockStatus;
 /**
  * Integration tests for the {@link StockResource} REST controller.
  */
@@ -36,12 +40,15 @@ import com.kacetal.library.stock.domain.enumeration.BookStockStatus;
 public class StockResourceIT {
 
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
+
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
     private static final Integer DEFAULT_QUANTITY = 0;
+
     private static final Integer UPDATED_QUANTITY = 1;
 
     private static final BookStockStatus DEFAULT_BOOK_STOCK_STATUS = BookStockStatus.AVAILABLE;
+
     private static final BookStockStatus UPDATED_BOOK_STOCK_STATUS = BookStockStatus.OUT_OF_STOCK;
 
     @Autowired
@@ -69,21 +76,9 @@ public class StockResourceIT {
 
     private Stock stock;
 
-    @BeforeEach
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
-        final StockResource stockResource = new StockResource(stockService);
-        this.restStockMockMvc = MockMvcBuilders.standaloneSetup(stockResource)
-            .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setControllerAdvice(exceptionTranslator)
-            .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter)
-            .setValidator(validator).build();
-    }
-
     /**
      * Create an entity for this test.
-     *
+     * <p>
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
@@ -94,9 +89,10 @@ public class StockResourceIT {
         stock.setBookStockStatus(DEFAULT_BOOK_STOCK_STATUS);
         return stock;
     }
+
     /**
      * Create an updated entity for this test.
-     *
+     * <p>
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
@@ -106,6 +102,18 @@ public class StockResourceIT {
         stock.setQuantity(UPDATED_QUANTITY);
         stock.setBookStockStatus(UPDATED_BOOK_STOCK_STATUS);
         return stock;
+    }
+
+    @BeforeEach
+    public void setup() {
+        MockitoAnnotations.initMocks(this);
+        final StockResource stockResource = new StockResource(stockService);
+        this.restStockMockMvc = MockMvcBuilders.standaloneSetup(stockResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter)
+            .setValidator(validator).build();
     }
 
     @BeforeEach
@@ -204,7 +212,7 @@ public class StockResourceIT {
             .andExpect(jsonPath("$.[*].quantity").value(hasItem(DEFAULT_QUANTITY)))
             .andExpect(jsonPath("$.[*].bookStockStatus").value(hasItem(DEFAULT_BOOK_STOCK_STATUS.toString())));
     }
-    
+
     @Test
     @Transactional
     public void getStock() throws Exception {
@@ -235,7 +243,7 @@ public class StockResourceIT {
         // Initialize the database
         stockService.save(stock);
 
-        int databaseSizeBeforeUpdate = stockRepository.findAll().size();
+        final int databaseSizeBeforeUpdate = stockRepository.findAll().size();
 
         // Update the stock
         Stock updatedStock = stockRepository.findById(stock.getId()).get();

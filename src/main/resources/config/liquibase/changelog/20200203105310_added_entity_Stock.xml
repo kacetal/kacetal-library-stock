@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <databaseChangeLog
-    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
-                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
 
-    
+
     <!--
         Added the entity Stock.
     -->
@@ -16,13 +14,13 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(50)">
-                <constraints nullable="true" />
+                <constraints nullable="true"/>
             </column>
             <column name="quantity" type="integer">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <column name="book_stock_status" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="false"/>
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
@@ -43,9 +41,9 @@
     -->
     <changeSet id="20200203105310-1-data" author="jhipster" context="faker">
         <loadData
-                  file="config/liquibase/fake-data/stock.csv"
-                  separator=";"
-                  tableName="stock">
+            file="config/liquibase/fake-data/stock.csv"
+            separator=";"
+            tableName="stock">
             <column name="id" type="numeric"/>
             <column name="name" type="string"/>
             <column name="quantity" type="numeric"/>

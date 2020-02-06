@@ -1,7 +1,6 @@
 package com.kacetal.library.stock.service;
 
 import com.kacetal.library.stock.domain.Stock;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

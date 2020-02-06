@@ -18,12 +18,12 @@ class ArchTest {
 
         noClasses()
             .that()
-                .resideInAnyPackage("..service..")
+            .resideInAnyPackage("..service..")
             .or()
-                .resideInAnyPackage("..repository..")
+            .resideInAnyPackage("..repository..")
             .should().dependOnClassesThat()
-                .resideInAnyPackage("..com.kacetal.library.stock.web..")
-        .because("Services and repositories should not depend on web layer")
-        .check(importedClasses);
+            .resideInAnyPackage("..com.kacetal.library.stock.web..")
+            .because("Services and repositories should not depend on web layer")
+            .check(importedClasses);
     }
 }

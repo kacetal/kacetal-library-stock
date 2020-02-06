@@ -14,7 +14,10 @@ import org.springframework.context.annotation.Configuration;
 import java.util.HashMap;
 import java.util.Map;
 
-import static io.github.jhipster.config.logging.LoggingUtils.*;
+import static io.github.jhipster.config.logging.LoggingUtils.addContextListener;
+import static io.github.jhipster.config.logging.LoggingUtils.addJsonConsoleAppender;
+import static io.github.jhipster.config.logging.LoggingUtils.addLogstashTcpSocketAppender;
+import static io.github.jhipster.config.logging.LoggingUtils.setMetricsMarkerLogbackFilter;
 
 /*
  * Configures the console and Logstash log appenders from the app properties

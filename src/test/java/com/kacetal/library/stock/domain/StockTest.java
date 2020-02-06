@@ -1,8 +1,9 @@
 package com.kacetal.library.stock.domain;
 
-import org.junit.jupiter.api.Test;
-import static org.assertj.core.api.Assertions.assertThat;
 import com.kacetal.library.stock.web.rest.TestUtil;
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class StockTest {
 

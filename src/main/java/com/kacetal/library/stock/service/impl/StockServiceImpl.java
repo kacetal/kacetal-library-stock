@@ -1,11 +1,10 @@
 package com.kacetal.library.stock.service.impl;
 
-import com.kacetal.library.stock.service.StockService;
 import com.kacetal.library.stock.domain.Stock;
 import com.kacetal.library.stock.repository.StockRepository;
+import com.kacetal.library.stock.service.StockService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

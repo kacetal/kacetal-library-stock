@@ -1,10 +1,8 @@
 package com.kacetal.library.stock;
 
 import com.kacetal.library.stock.config.ApplicationProperties;
-
 import io.github.jhipster.config.DefaultProfileUtil;
 import io.github.jhipster.config.JHipsterConstants;
-
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,26 +30,6 @@ public class KacetalLibraryStockApp implements InitializingBean {
 
     public KacetalLibraryStockApp(Environment env) {
         this.env = env;
-    }
-
-    /**
-     * Initializes kacetalLibraryStock.
-     * <p>
-     * Spring profiles can be configured with a program argument --spring.profiles.active=your-active-profile
-     * <p>
-     * You can find more information on how profiles work with JHipster on <a href="https://www.jhipster.tech/profiles/">https://www.jhipster.tech/profiles/</a>.
-     */
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        Collection<String> activeProfiles = Arrays.asList(env.getActiveProfiles());
-        if (activeProfiles.contains(JHipsterConstants.SPRING_PROFILE_DEVELOPMENT) && activeProfiles.contains(JHipsterConstants.SPRING_PROFILE_PRODUCTION)) {
-            log.error("You have misconfigured your application! It should not run " +
-                "with both the 'dev' and 'prod' profiles at the same time.");
-        }
-        if (activeProfiles.contains(JHipsterConstants.SPRING_PROFILE_DEVELOPMENT) && activeProfiles.contains(JHipsterConstants.SPRING_PROFILE_CLOUD)) {
-            log.error("You have misconfigured your application! It should not " +
-                "run with both the 'dev' and 'cloud' profiles at the same time.");
-        }
     }
 
     /**
@@ -102,6 +80,26 @@ public class KacetalLibraryStockApp implements InitializingBean {
             configServerStatus = "Not found or not setup for this application";
         }
         log.info("\n----------------------------------------------------------\n\t" +
-                "Config Server: \t{}\n----------------------------------------------------------", configServerStatus);
+            "Config Server: \t{}\n----------------------------------------------------------", configServerStatus);
+    }
+
+    /**
+     * Initializes kacetalLibraryStock.
+     * <p>
+     * Spring profiles can be configured with a program argument --spring.profiles.active=your-active-profile
+     * <p>
+     * You can find more information on how profiles work with JHipster on <a href="https://www.jhipster.tech/profiles/">https://www.jhipster.tech/profiles/</a>.
+     */
+    @Override
+    public void afterPropertiesSet() {
+        Collection<String> activeProfiles = Arrays.asList(env.getActiveProfiles());
+        if (activeProfiles.contains(JHipsterConstants.SPRING_PROFILE_DEVELOPMENT) && activeProfiles.contains(JHipsterConstants.SPRING_PROFILE_PRODUCTION)) {
+            log.error("You have misconfigured your application! It should not run " +
+                "with both the 'dev' and 'prod' profiles at the same time.");
+        }
+        if (activeProfiles.contains(JHipsterConstants.SPRING_PROFILE_DEVELOPMENT) && activeProfiles.contains(JHipsterConstants.SPRING_PROFILE_CLOUD)) {
+            log.error("You have misconfigured your application! It should not " +
+                "run with both the 'dev' and 'cloud' profiles at the same time.");
+        }
     }
 }
