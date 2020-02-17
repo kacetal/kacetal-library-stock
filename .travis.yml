@@ -4,17 +4,13 @@ services:
   - docker
 language: java
 jdk:
-  - openjdk12
+  - adopt@1.12
 cache:
   directories:
     - node
     - node_modules
     - $HOME/.m2
     - $HOME/jdk-12.0.2+10
-matrix:
-  include:
-    - env:
-        - TRAVIS_JDK=adopt@1.12
 env:
   global:
     - NODE_VERSION=12.13.1
@@ -23,12 +19,6 @@ env:
     - JHI_DISABLE_WEBPACK_LOGS=true
     - NG_CLI_ANALYTICS="false"
     - MAVEN_USER_HOME=$HOME/.m2/repository/
-    - JDK_WORKSPACE=${HOME}
-    - JDK_VERSION=12
-    - JDK_BUILD=0.2+10
-    - JDK_ARCHIVE=OpenJDK12U-jdk_x64_linux_hotspot_12.0.2_10.tar.gz
-    - JDK_URL='https://github.com/AdoptOpenJDK/openjdk12-binaries/releases/download/jdk-12.0.2%2B10/'
-    - JDK_HOME=jdk-${JDK_VERSION}.${JDK_BUILD}
 script:
   - chmod +x mvnw
   - java -version
