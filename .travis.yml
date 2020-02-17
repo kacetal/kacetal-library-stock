@@ -1,0 +1,56 @@
+os:
+  - linux
+services:
+  - docker
+language: java
+jdk:
+  - openjdk12
+cache:
+  directories:
+    - node
+    - node_modules
+    - $HOME/.m2
+    - $HOME/jdk-12.0.2+10
+env:
+  global:
+    - NODE_VERSION=12.13.1
+    - SPRING_OUTPUT_ANSI_ENABLED=ALWAYS
+    - SPRING_JPA_SHOW_SQL=false
+    - JHI_DISABLE_WEBPACK_LOGS=true
+    - NG_CLI_ANALYTICS="false"
+    - MAVEN_USER_HOME=$HOME/.m2/repository/
+    - JDK_WORKSPACE=${HOME}
+    - JDK_VERSION=12
+    - JDK_BUILD=0.2+10
+    - JDK_ARCHIVE=OpenJDK12U-jdk_x64_linux_hotspot_12.0.2_10.tar.gz
+    - JDK_URL='https://github.com/AdoptOpenJDK/openjdk12-binaries/releases/download/jdk-12.0.2%2B10/'
+    - JDK_HOME=jdk-${JDK_VERSION}.${JDK_BUILD}
+before_install:
+  - mkdir -p ${JDK_WORKSPACE}
+  - cd ${JDK_WORKSPACE}
+  - wget ${JDK_URL}${JDK_ARCHIVE}
+  - tar -xzf ${JDK_ARCHIVE}
+  - cd -
+  - export JAVA_HOME=${JDK_WORKSPACE}/${JDK_HOME}
+  - export PATH=${JAVA_HOME}/bin:$PATH
+  - java -version
+  - sudo /etc/init.d/mysql stop
+  - sudo /etc/init.d/postgresql stop
+  - nvm install $NODE_VERSION
+  - npm install -g npm
+  - node -v
+  - npm -v
+install:
+  - npm install
+script:
+  - chmod +x mvnw
+  - ${JAVA_HOME}/bin/java -version
+  - ./mvnw -ntp checkstyle:check
+  - ./mvnw -ntp clean verify
+  - ./mvnw -ntp verify -Pprod -DskipTests
+  - ./mvnw -ntp com.heroku.sdk:heroku-maven-plugin:2.0.5:deploy -DskipTests -Pprod -Dheroku.buildpacks=heroku/jvm -Dheroku.appName=kacetal-library-stock
+notifications:
+  webhooks:
+    on_success: change  # options: [always|never|change] default: always
+    on_failure: always  # options: [always|never|change] default: always
+    on_start: false     # default: false
