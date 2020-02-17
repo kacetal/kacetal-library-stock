@@ -11,6 +11,10 @@ cache:
     - node_modules
     - $HOME/.m2
     - $HOME/jdk-12.0.2+10
+matrix:
+  include:
+    - env:
+        - TRAVIS_JDK=adopt@1.12
 env:
   global:
     - NODE_VERSION=12.13.1
@@ -25,26 +29,9 @@ env:
     - JDK_ARCHIVE=OpenJDK12U-jdk_x64_linux_hotspot_12.0.2_10.tar.gz
     - JDK_URL='https://github.com/AdoptOpenJDK/openjdk12-binaries/releases/download/jdk-12.0.2%2B10/'
     - JDK_HOME=jdk-${JDK_VERSION}.${JDK_BUILD}
-before_install:
-  - mkdir -p ${JDK_WORKSPACE}
-  - cd ${JDK_WORKSPACE}
-  - wget ${JDK_URL}${JDK_ARCHIVE}
-  - tar -xzf ${JDK_ARCHIVE}
-  - cd -
-  - export JAVA_HOME=${JDK_WORKSPACE}/${JDK_HOME}
-  - export PATH=${JAVA_HOME}/bin:$PATH
-  - java -version
-  - sudo /etc/init.d/mysql stop
-  - sudo /etc/init.d/postgresql stop
-  - nvm install $NODE_VERSION
-  - npm install -g npm
-  - node -v
-  - npm -v
-install:
-  - npm install
 script:
   - chmod +x mvnw
-  - ${JAVA_HOME}/bin/java -version
+  - java -version
   - ./mvnw -ntp checkstyle:check
   - ./mvnw -ntp clean verify
   - ./mvnw -ntp verify -Pprod -DskipTests
