@@ -4,6 +4,9 @@ import com.kacetal.library.stock.domain.enumeration.BookStockStatus;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,6 +30,7 @@ import java.io.Serializable;
 @ToString
 @Entity
 @Table(name = "stock")
+@Document(indexName = "stock")
 public class Stock implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -34,6 +38,7 @@ public class Stock implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
+    @Field(type = FieldType.Keyword)
     private Long id;
 
     @Size(min = 2, max = 50)

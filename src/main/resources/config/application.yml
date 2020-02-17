@@ -103,6 +103,8 @@ management:
         auto-time-requests: true
 
 spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration,org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchDataAutoConfiguration
   application:
     name: kacetalLibraryStock
   jmx:
@@ -120,6 +122,7 @@ spring:
       naming:
         physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
         implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+    show-sql: true
   messages:
     basename: i18n/messages
   main:
@@ -195,3 +198,6 @@ jhipster:
 # ===================================================================
 
 # application:
+logging:
+  level:
+    root: DEBUG

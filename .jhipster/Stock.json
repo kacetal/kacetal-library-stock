@@ -43,5 +43,6 @@
         "kacetalLibraryGateway",
         "kacetalLibraryStock"
     ],
-    "microserviceName": "kacetalLibraryStock"
+    "microserviceName": "kacetalLibraryStock",
+    "searchEngine": "elasticsearch"
 }

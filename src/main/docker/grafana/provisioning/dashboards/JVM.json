@@ -67,11 +67,7 @@
       "cacheTimeout": null,
       "colorBackground": false,
       "colorValue": true,
-      "colors": [
-        "rgba(245, 54, 54, 0.9)",
-        "rgba(237, 129, 40, 0.89)",
-        "rgba(50, 172, 45, 0.97)"
-      ],
+      "colors": ["rgba(245, 54, 54, 0.9)", "rgba(237, 129, 40, 0.89)", "rgba(50, 172, 45, 0.97)"],
       "datasource": "Prometheus",
       "decimals": 1,
       "editable": true,
@@ -154,11 +150,7 @@
       "cacheTimeout": null,
       "colorBackground": false,
       "colorValue": true,
-      "colors": [
-        "rgba(245, 54, 54, 0.9)",
-        "rgba(237, 129, 40, 0.89)",
-        "rgba(50, 172, 45, 0.97)"
-      ],
+      "colors": ["rgba(245, 54, 54, 0.9)", "rgba(237, 129, 40, 0.89)", "rgba(50, 172, 45, 0.97)"],
       "datasource": "Prometheus",
       "decimals": null,
       "editable": true,
@@ -241,11 +233,7 @@
       "cacheTimeout": null,
       "colorBackground": false,
       "colorValue": true,
-      "colors": [
-        "rgba(50, 172, 45, 0.97)",
-        "rgba(237, 129, 40, 0.89)",
-        "rgba(245, 54, 54, 0.9)"
-      ],
+      "colors": ["rgba(50, 172, 45, 0.97)", "rgba(237, 129, 40, 0.89)", "rgba(245, 54, 54, 0.9)"],
       "datasource": "Prometheus",
       "decimals": 2,
       "editable": true,
@@ -326,11 +314,7 @@
       "cacheTimeout": null,
       "colorBackground": false,
       "colorValue": true,
-      "colors": [
-        "rgba(50, 172, 45, 0.97)",
-        "rgba(237, 129, 40, 0.89)",
-        "rgba(245, 54, 54, 0.9)"
-      ],
+      "colors": ["rgba(50, 172, 45, 0.97)", "rgba(237, 129, 40, 0.89)", "rgba(245, 54, 54, 0.9)"],
       "datasource": "Prometheus",
       "decimals": 2,
       "editable": true,
@@ -811,10 +795,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "mbytes",
-        "short"
-      ],
+      "y_formats": ["mbytes", "short"],
       "yaxes": [
         {
           "format": "bytes",
@@ -933,10 +914,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "mbytes",
-        "short"
-      ],
+      "y_formats": ["mbytes", "short"],
       "yaxes": [
         {
           "format": "bytes",
@@ -1105,10 +1083,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "mbytes",
-        "short"
-      ],
+      "y_formats": ["mbytes", "short"],
       "yaxes": [
         {
           "format": "bytes",
@@ -1241,10 +1216,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "short",
-        "short"
-      ],
+      "y_formats": ["short", "short"],
       "yaxes": [
         {
           "decimals": 1,
@@ -1360,10 +1332,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "short",
-        "short"
-      ],
+      "y_formats": ["short", "short"],
       "yaxes": [
         {
           "decimals": 1,
@@ -1492,10 +1461,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "short",
-        "short"
-      ],
+      "y_formats": ["short", "short"],
       "yaxes": [
         {
           "decimals": 0,
@@ -1714,10 +1680,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "short",
-        "short"
-      ],
+      "y_formats": ["short", "short"],
       "yaxes": [
         {
           "decimals": 0,
@@ -1845,10 +1808,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "short",
-        "short"
-      ],
+      "y_formats": ["short", "short"],
       "yaxes": [
         {
           "decimals": 0,
@@ -2000,10 +1960,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "mbytes",
-        "short"
-      ],
+      "y_formats": ["mbytes", "short"],
       "yaxes": [
         {
           "format": "bytes",
@@ -2142,10 +2099,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "mbytes",
-        "short"
-      ],
+      "y_formats": ["mbytes", "short"],
       "yaxes": [
         {
           "format": "bytes",
@@ -2284,10 +2238,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "mbytes",
-        "short"
-      ],
+      "y_formats": ["mbytes", "short"],
       "yaxes": [
         {
           "format": "bytes",
@@ -2438,10 +2389,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "mbytes",
-        "short"
-      ],
+      "y_formats": ["mbytes", "short"],
       "yaxes": [
         {
           "format": "bytes",
@@ -2580,10 +2528,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "mbytes",
-        "short"
-      ],
+      "y_formats": ["mbytes", "short"],
       "yaxes": [
         {
           "format": "bytes",
@@ -2722,10 +2667,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "mbytes",
-        "short"
-      ],
+      "y_formats": ["mbytes", "short"],
       "yaxes": [
         {
           "format": "bytes",
@@ -3134,10 +3076,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "short",
-        "short"
-      ],
+      "y_formats": ["short", "short"],
       "yaxes": [
         {
           "format": "short",
@@ -3241,10 +3180,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "ops",
-        "short"
-      ],
+      "y_formats": ["ops", "short"],
       "yaxes": [
         {
           "decimals": null,
@@ -3370,10 +3306,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "short",
-        "short"
-      ],
+      "y_formats": ["short", "short"],
       "yaxes": [
         {
           "format": "bytes",
@@ -3475,10 +3408,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "short",
-        "short"
-      ],
+      "y_formats": ["short", "short"],
       "yaxes": [
         {
           "decimals": 0,
@@ -3590,10 +3520,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "short",
-        "short"
-      ],
+      "y_formats": ["short", "short"],
       "yaxes": [
         {
           "format": "bytes",
@@ -3695,10 +3622,7 @@
         "values": []
       },
       "y-axis": true,
-      "y_formats": [
-        "short",
-        "short"
-      ],
+      "y_formats": ["short", "short"],
       "yaxes": [
         {
           "decimals": 0,
@@ -3844,29 +3768,8 @@
   },
   "timepicker": {
     "now": true,
-    "refresh_intervals": [
-      "5s",
-      "10s",
-      "30s",
-      "1m",
-      "5m",
-      "15m",
-      "30m",
-      "1h",
-      "2h",
-      "1d"
-    ],
-    "time_options": [
-      "5m",
-      "15m",
-      "1h",
-      "6h",
-      "12h",
-      "24h",
-      "2d",
-      "7d",
-      "30d"
-    ]
+    "refresh_intervals": ["5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h", "2h", "1d"],
+    "time_options": ["5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d"]
   },
   "timezone": "browser",
   "title": "JVM (Micrometer)",

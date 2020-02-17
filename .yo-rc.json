@@ -6,13 +6,16 @@
     "enableSwaggerCodegen": false,
     "enableTranslation": true,
     "jhiPrefix": "jhi",
-    "languages": ["en", "fr"],
+    "languages": [
+      "en",
+      "fr"
+    ],
     "messageBroker": false,
     "nativeLanguage": "en",
     "packageName": "com.kacetal.library.stock",
     "packageFolder": "com/kacetal/library/stock",
     "prodDatabaseType": "postgresql",
-    "searchEngine": false,
+    "searchEngine": "elasticsearch",
     "serviceDiscoveryType": "eureka",
     "skipClient": true,
     "testFrameworks": [],

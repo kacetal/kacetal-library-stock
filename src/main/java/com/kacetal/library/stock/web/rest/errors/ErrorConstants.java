@@ -4,6 +4,10 @@ import java.net.URI;
 
 public final class ErrorConstants {
 
+    public static final String STOCK_NOT_FOUND = "stock_not_found";
+
+    public static final String ID_NULL = "id_null";
+
     public static final String ERR_CONCURRENCY_FAILURE = "error.concurrencyFailure";
 
     public static final String ERR_VALIDATION = "error.validation";

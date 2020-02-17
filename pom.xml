@@ -22,7 +22,7 @@
     <properties>
         <!-- Build properties -->
         <maven.version>3.3.9</maven.version>
-        <java.version>11</java.version>
+        <java.version>12</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.testresult.directory>${project.build.directory}/test-results</project.testresult.directory>
@@ -33,9 +33,9 @@
         <m2e.apt.activation>jdt_apt</m2e.apt.activation>
         <run.addResources>false</run.addResources>
         <!-- These remain empty unless the corresponding profile is active -->
-        <profile.no-liquibase/>
-        <profile.swagger/>
-        <profile.tls/>
+        <profile.no-liquibase />
+        <profile.swagger />
+        <profile.tls />
 
         <!-- Dependency versions -->
         <jhipster-dependencies.version>3.1.0</jhipster-dependencies.version>
@@ -60,6 +60,7 @@
         <validation-api.version>2.0.1.Final</validation-api.version>
         <jaxb-runtime.version>2.3.2</jaxb-runtime.version>
         <archunit-junit5.version>0.12.0</archunit-junit5.version>
+        <log4j2-mock.version>0.0.1</log4j2-mock.version>
         <mapstruct.version>1.3.1.Final</mapstruct.version>
         <!-- Plugin versions -->
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
@@ -228,6 +229,33 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+        </dependency>
+        <!-- Spring Data Jest dependencies for Elasticsearch -->
+        <dependency>
+            <groupId>com.github.vanroy</groupId>
+            <artifactId>spring-boot-starter-data-jest</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>HdrHistogram</artifactId>
+                    <groupId>org.hdrhistogram</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- log4j2-mock needed to create embedded elasticsearch instance with SLF4J -->
+        <dependency>
+            <groupId>de.dentrassi.elasticsearch</groupId>
+            <artifactId>log4j2-mock</artifactId>
+            <version>${log4j2-mock.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <!-- end of Spring Data Jest dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-logging</artifactId>
@@ -500,12 +528,10 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>${start-class}</mainClass>
+                    <mainClass>com.kacetal.library.stock.KacetalLibraryStockApp</mainClass>
                     <fork>true</fork>
-                    <!--
-                    Enable the line below to have remote debugging of your application on port 5005
+                    <!-- Enable the line below to have remote debugging of your application on port 5005 -->
                     <jvmArguments>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005</jvmArguments>
-                    -->
                 </configuration>
             </plugin>
             <plugin>
@@ -618,9 +644,9 @@
                     <version>${jib-maven-plugin.version}</version>
                     <configuration>
                         <from>
-                            <!-- adoptopenjdk:11.0.6_10-jre-hotspot-bionic -->
+                            <!-- adoptopenjdk:12.0.2_10-jre-hotspot-bionic -->
                             <image>
-                                adoptopenjdk@sha256:7b963af158a60d58abdd43ad3bca4d39b0634e95c450a2e913518319d25ed090
+                                adoptopenjdk@sha256:2d755ee3464690512be367496028bb3061f0af310043f21c3e820bcb11d0d55c
                             </image>
                         </from>
                         <to>
@@ -639,7 +665,7 @@
                                 <SPRING_OUTPUT_ANSI_ENABLED>ALWAYS</SPRING_OUTPUT_ANSI_ENABLED>
                                 <JHIPSTER_SLEEP>0</JHIPSTER_SLEEP>
                             </environment>
-                            <creationTime>2020-01-29T00:00:00Z</creationTime>
+                            <creationTime>2020-02-12T00:00:00Z</creationTime>
                         </container>
                     </configuration>
                 </plugin>
@@ -740,7 +766,7 @@
                             <id>enforce-dependencyConvergence</id>
                             <configuration>
                                 <rules>
-                                    <DependencyConvergence/>
+                                    <DependencyConvergence />
                                 </rules>
                                 <fail>false</fail>
                             </configuration>
@@ -935,7 +961,7 @@
                         <groupId>org.springframework.boot</groupId>
                         <artifactId>spring-boot-maven-plugin</artifactId>
                         <configuration>
-                            <mainClass>${start-class}</mainClass>
+                            <mainClass>com.kacetal.library.stock.KacetalLibraryStockApp</mainClass>
                         </configuration>
                         <executions>
                             <execution>
@@ -1054,7 +1080,7 @@
                                                 </goals>
                                             </pluginExecutionFilter>
                                             <action>
-                                                <ignore/>
+                                                <ignore />
                                             </action>
                                         </pluginExecution>
                                     </pluginExecutions>

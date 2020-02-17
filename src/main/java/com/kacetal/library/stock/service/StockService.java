@@ -1,6 +1,7 @@
 package com.kacetal.library.stock.service;
 
 import com.kacetal.library.stock.domain.Stock;
+import com.kacetal.library.stock.domain.enumeration.BookStockStatus;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -42,4 +43,29 @@ public interface StockService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    /**
+     * Search for the stock corresponding to the query.
+     *
+     * @param query    the query of the search.
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    Page<Stock> search(String query, Pageable pageable);
+
+    /**
+     * Borrow Book from {@link Stock} with specific id.
+     *
+     * @param id the id of stock.
+     * @return the Status of Borrow.
+     */
+    Optional<BookStockStatus> borrowBook(Long id);
+
+    /**
+     * Return Book to {@link Stock} with specific id.
+     *
+     * @param id the id of stock.
+     * @return the Status of Borrow.
+     */
+    Optional<BookStockStatus> returnBook(Long id);
 }
