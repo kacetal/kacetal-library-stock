@@ -6,10 +6,7 @@
     "enableSwaggerCodegen": false,
     "enableTranslation": true,
     "jhiPrefix": "jhi",
-    "languages": [
-      "en",
-      "fr"
-    ],
+    "languages": ["en", "fr"],
     "messageBroker": false,
     "nativeLanguage": "en",
     "packageName": "com.kacetal.library.stock",
@@ -35,7 +32,9 @@
     "entitySuffix": "",
     "dtoSuffix": "DTO",
     "otherModules": [],
-    "blueprints": []
+    "blueprints": [],
+    "herokuAppName": "kacetal-library-stock",
+    "herokuDeployType": "git"
   },
   "entities": ["Stock"]
 }
