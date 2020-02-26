@@ -3,14 +3,15 @@ os:
 services:
   - docker
 language: java
-jdk:
-  - openjdk12
+matrix:
+  include:
+    - env:
+        - TRAVIS_JDK=adopt@1.12
 cache:
   directories:
     - node
     - node_modules
     - $HOME/.m2
-    - $HOME/jdk-12.0.2+10
 env:
   global:
     - NODE_VERSION=12.13.1
