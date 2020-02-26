@@ -6,7 +6,8 @@ language: java
 matrix:
   include:
     - env:
-        - JDK=adopt@1.12
+        - TRAVIS_JDK=adopt@1.12
+        - NODE_VERSION=12.13.1
 cache:
   directories:
     - node
@@ -14,7 +15,6 @@ cache:
     - $HOME/.m2
 env:
   global:
-    - NODE_VERSION=12.13.1
     - SPRING_OUTPUT_ANSI_ENABLED=ALWAYS
     - SPRING_JPA_SHOW_SQL=false
     - JHI_DISABLE_WEBPACK_LOGS=true
