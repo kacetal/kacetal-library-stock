@@ -3,6 +3,8 @@ os:
 services:
   - docker
 language: java
+jdk:
+  - openjdk12
 cache:
   directories:
     - $HOME/.m2
@@ -13,13 +15,6 @@ env:
     - JHI_DISABLE_WEBPACK_LOGS=true
     - NG_CLI_ANALYTICS="false"
     - MAVEN_USER_HOME=$HOME/.m2/repository/
-    - TRAVIS_JDK=adopt@1.12
-install:
-  - unset _JAVA_OPTIONS
-  - echo $TRAVIS_JDK
-  - ls /home/travis/bin
-  - export JAVA_HOME="$TRAVIS_JDK"
-  - java -version
 script:
   - chmod +x mvnw
   - java -version
