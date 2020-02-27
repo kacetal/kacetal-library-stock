@@ -6,8 +6,6 @@ language: java
 cache:
   directories:
     - $HOME/.m2
-jdk:
-  - adopt@1.12
 env:
   global:
     - SPRING_OUTPUT_ANSI_ENABLED=ALWAYS
