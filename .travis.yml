@@ -14,10 +14,11 @@ env:
     - NG_CLI_ANALYTICS="false"
     - MAVEN_USER_HOME=$HOME/.m2/repository/
   matrix:
-    - TRAVIS_JDK=adopt@1.12
+    - TRAVIS_JDK=adopt@1.12.0.2+10
 install:
   - unset _JAVA_OPTIONS
   - echo $TRAVIS_JDK
+  - ls /home/travis
   - export JAVA_HOME="$TRAVIS_JDK"
   - java -version
 script:
