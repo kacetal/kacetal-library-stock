@@ -6,6 +6,8 @@ language: java
 cache:
   directories:
     - $HOME/.m2
+jdk:
+  - adopt@1.12
 env:
   global:
     - SPRING_OUTPUT_ANSI_ENABLED=ALWAYS
@@ -13,12 +15,11 @@ env:
     - JHI_DISABLE_WEBPACK_LOGS=true
     - NG_CLI_ANALYTICS="false"
     - MAVEN_USER_HOME=$HOME/.m2/repository/
-  matrix:
-    - TRAVIS_JDK=adopt@1.12.0.2+10
+    - TRAVIS_JDK=adopt@1.12
 install:
   - unset _JAVA_OPTIONS
   - echo $TRAVIS_JDK
-  - ls /home/travis
+  - ls /home/travis/bin
   - export JAVA_HOME="$TRAVIS_JDK"
   - java -version
 script:
