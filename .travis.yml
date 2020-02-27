@@ -3,11 +3,8 @@ os:
 services:
   - docker
 language: java
-matrix:
-  include:
-    - env:
-        - JAVA_HOME=adopt@1.12
-        - NODE_VERSION=12.13.1
+jdk:
+  - adopt@1.12
 cache:
   directories:
     - node
