@@ -3,8 +3,10 @@ os:
 services:
   - docker
 language: java
-jdk:
-  - adopt@12
+matrix:
+  include:
+    - env:
+        - TRAVIS_JDK=adopt@1.12
 cache:
   directories:
     - $HOME/.m2
