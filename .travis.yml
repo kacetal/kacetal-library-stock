@@ -17,6 +17,10 @@ env:
     - JHI_DISABLE_WEBPACK_LOGS=true
     - NG_CLI_ANALYTICS="false"
     - MAVEN_USER_HOME=$HOME/.m2/repository/
+install:
+  - unset _JAVA_OPTIONS
+  - export JAVA_HOME="$TRAVIS_JDK"
+  - java -version
 script:
   - chmod +x mvnw
   - java -version
