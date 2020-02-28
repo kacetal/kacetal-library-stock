@@ -1,0 +1,11 @@
+id;name;quantity;book_stock_status
+1;bandwidth invoice;19381;OUT_OF_BORROW
+2;fuchsia generate;75219;OUT_OF_STOCK
+3;JBOD;31235;AVAILABLE
+4;Human integrated;85045;OUT_OF_STOCK
+5;withdrawal Utah distributed;49111;OUT_OF_STOCK
+6;withdrawal Persevering;66097;AVAILABLE
+7;compressing compressing;94387;AVAILABLE
+8;Arkansas backing up explicit;63682;OUT_OF_STOCK
+9;Buckinghamshire Electronics;86272;OUT_OF_BORROW
+10;orange payment Markets;23195;OUT_OF_BORROW
