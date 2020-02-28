@@ -23,7 +23,7 @@
     "cacheProvider": "no",
     "buildTool": "maven",
     "serverPort": "8083",
-    "jhipsterVersion": "6.6.0",
+    "jhipsterVersion": "6.7.1",
     "skipUserManagement": true,
     "clientPackageManager": "npm",
     "jwtSecretKey": "NWUyNmRhY2UyMzgyYmQ3NjU1ZjAzOTlhZjIwZDQwZDI4ZDZlYWQ2OTY5OTZjOTMyYmMyNTYxYWY1MjEyMzE1ZThmYTc4OGRkNzE5MDA4MDk1ZmM5YjA2ZTU3ZjM0MjY2ODNkMWYwZmQwMzZmNmE0MzE2Yjc5ZjRmZTJlOTNmNmY=",

@@ -64,7 +64,6 @@ public class StockServiceImpl implements StockService {
         return stockRepository.findAll(pageable);
     }
 
-
     /**
      * Get one stock by id.
      *

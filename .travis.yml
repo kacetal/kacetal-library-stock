@@ -3,8 +3,7 @@ os:
 services:
   - docker
 language: java
-jdk:
-  - openjdk12
+
 cache:
   directories:
     - $HOME/.m2
@@ -15,6 +14,10 @@ env:
     - JHI_DISABLE_WEBPACK_LOGS=true
     - NG_CLI_ANALYTICS="false"
     - MAVEN_USER_HOME=$HOME/.m2/repository/
+    - NODE_VERSION=12.13.1
+  matrix:
+  - TRAVIS_JDK=adopt-openj9@1.12
+
 script:
   - chmod +x mvnw
   - java -version

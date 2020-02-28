@@ -1,7 +1,7 @@
 version: '2'
 services:
   kacetallibrarystock-postgresql:
-    image: postgres:11.6
+    image: postgres:12.1
     # volumes:
     #     - ~/volumes/jhipster/kacetalLibraryStock/postgresql/:/var/lib/postgresql/data/
     environment:

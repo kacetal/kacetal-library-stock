@@ -15,7 +15,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
-import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -30,7 +29,7 @@ import java.util.Optional;
 import static com.kacetal.library.stock.domain.enumeration.BookStockStatus.AVAILABLE;
 import static com.kacetal.library.stock.domain.enumeration.BookStockStatus.OUT_OF_BORROW;
 import static com.kacetal.library.stock.domain.enumeration.BookStockStatus.OUT_OF_STOCK;
-import static com.kacetal.library.stock.web.rest.TestUtil.APPLICATION_JSON_UTF8;
+import static com.kacetal.library.stock.web.rest.TestUtil.APPLICATION_JSON;
 import static com.kacetal.library.stock.web.rest.TestUtil.createFormattingConversionService;
 import static com.kacetal.library.stock.web.rest.errors.ErrorConstants.STOCK_NOT_FOUND;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -44,6 +43,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.http.HttpStatus.FORBIDDEN;
 import static org.springframework.http.HttpStatus.NOT_ACCEPTABLE;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.http.MediaType.APPLICATION_PROBLEM_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -157,7 +157,7 @@ public class StockResourceIT {
 
         // Create the Stock
         restStockMockMvc.perform(post("/api/stocks")
-            .contentType(APPLICATION_JSON_UTF8)
+            .contentType(APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(stock)))
             .andExpect(status().isCreated());
 
@@ -183,7 +183,7 @@ public class StockResourceIT {
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restStockMockMvc.perform(post("/api/stocks")
-            .contentType(APPLICATION_JSON_UTF8)
+            .contentType(APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(stock)))
             .andExpect(status().isBadRequest());
 
@@ -206,7 +206,7 @@ public class StockResourceIT {
         // Create the Stock, which fails.
 
         restStockMockMvc.perform(post("/api/stocks")
-            .contentType(APPLICATION_JSON_UTF8)
+            .contentType(APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(stock)))
             .andExpect(status().isBadRequest());
 
@@ -224,7 +224,7 @@ public class StockResourceIT {
         // Create the Stock, which fails.
 
         restStockMockMvc.perform(post("/api/stocks")
-            .contentType(APPLICATION_JSON_UTF8)
+            .contentType(APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(stock)))
             .andExpect(status().isBadRequest());
 
@@ -241,7 +241,7 @@ public class StockResourceIT {
         // Get all the stockList
         restStockMockMvc.perform(get("/api/stocks?sort=id,desc"))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(stock.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
             .andExpect(jsonPath("$.[*].quantity").value(hasItem(DEFAULT_QUANTITY)))
@@ -257,7 +257,7 @@ public class StockResourceIT {
         // Get the stock
         restStockMockMvc.perform(get("/api/stocks/{id}", stock.getId()))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(stock.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
             .andExpect(jsonPath("$.quantity").value(DEFAULT_QUANTITY))
@@ -291,7 +291,7 @@ public class StockResourceIT {
         updatedStock.setBookStockStatus(UPDATED_BOOK_STOCK_STATUS);
 
         restStockMockMvc.perform(put("/api/stocks")
-            .contentType(APPLICATION_JSON_UTF8)
+            .contentType(APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(updatedStock)))
             .andExpect(status().isOk());
 
@@ -316,7 +316,7 @@ public class StockResourceIT {
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
         restStockMockMvc.perform(put("/api/stocks")
-            .contentType(APPLICATION_JSON_UTF8)
+            .contentType(APPLICATION_JSON)
             .content(TestUtil.convertObjectToJsonBytes(stock)))
             .andExpect(status().isBadRequest());
 
@@ -338,7 +338,7 @@ public class StockResourceIT {
 
         // Delete the stock
         restStockMockMvc.perform(delete("/api/stocks/{id}", stock.getId())
-            .accept(APPLICATION_JSON_UTF8))
+            .accept(APPLICATION_JSON))
             .andExpect(status().isNoContent());
 
         // Validate the database contains one less item
@@ -359,7 +359,7 @@ public class StockResourceIT {
         // Search the stock
         restStockMockMvc.perform(get("/api/_search/stocks?query=id:" + stock.getId()))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(content().contentType(APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(stock.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
             .andExpect(jsonPath("$.[*].quantity").value(hasItem(DEFAULT_QUANTITY)))
@@ -373,7 +373,7 @@ public class StockResourceIT {
         stockService.save(stock);
         // Borrow the book
         restStockMockMvc.perform(patch("/api/stocks/{id}/borrow", stock.getId())
-            .accept(APPLICATION_JSON_UTF8))
+            .accept(APPLICATION_JSON))
             .andExpect(status().isAccepted())
             .andExpect(content().string(isEmptyOrNullString()));
 
@@ -392,7 +392,7 @@ public class StockResourceIT {
         stockService.save(stock);
         // Borrow the book
         restStockMockMvc.perform(patch("/api/stocks/{id}/borrow", stock.getId() + 5)
-            .accept(APPLICATION_JSON_UTF8))
+            .accept(APPLICATION_JSON))
             .andExpect(status().isNotFound())
             .andExpect(jsonPath("$.errorKey").value(STOCK_NOT_FOUND))
             .andExpect(jsonPath("$.status").value(NOT_FOUND.value()));
@@ -406,7 +406,7 @@ public class StockResourceIT {
         stockService.save(stock);
         // Borrow the book
         restStockMockMvc.perform(patch("/api/stocks/{id}/borrow", stock.getId())
-            .accept(APPLICATION_JSON_UTF8))
+            .accept(APPLICATION_JSON))
             .andExpect(status().isAccepted())
             .andExpect(content().string(isEmptyOrNullString()));
 
@@ -427,7 +427,7 @@ public class StockResourceIT {
         stockService.save(stock);
         // Borrow the book
         restStockMockMvc.perform(patch("/api/stocks/{id}/borrow", stock.getId())
-            .accept(APPLICATION_JSON_UTF8))
+            .accept(APPLICATION_JSON))
             .andExpect(status().isNotAcceptable())
             .andExpect(content().contentType(APPLICATION_PROBLEM_JSON))
             .andExpect(jsonPath("$.errorKey").value(OUT_OF_STOCK.errorKey()))
@@ -442,7 +442,7 @@ public class StockResourceIT {
         stockService.save(stock);
         // Borrow the book
         restStockMockMvc.perform(patch("/api/stocks/{id}/borrow", stock.getId())
-            .accept(APPLICATION_JSON_UTF8))
+            .accept(APPLICATION_JSON))
             .andExpect(status().isForbidden())
             .andExpect(content().contentType(APPLICATION_PROBLEM_JSON))
             .andExpect(jsonPath("$.errorKey").value(OUT_OF_BORROW.errorKey()))
@@ -456,7 +456,7 @@ public class StockResourceIT {
         stockService.save(stock);
         // Borrow the book
         restStockMockMvc.perform(patch("/api/stocks/{id}/return", stock.getId())
-            .accept(APPLICATION_JSON_UTF8))
+            .accept(APPLICATION_JSON))
             .andExpect(status().isAccepted())
             .andExpect(content().string(isEmptyOrNullString()));
 
@@ -478,7 +478,7 @@ public class StockResourceIT {
         stockService.save(stock);
         // Borrow the book
         restStockMockMvc.perform(patch("/api/stocks/{id}/return", stock.getId())
-            .accept(APPLICATION_JSON_UTF8))
+            .accept(APPLICATION_JSON))
             .andExpect(status().isAccepted())
             .andExpect(content().string(isEmptyOrNullString()));
 
@@ -499,7 +499,7 @@ public class StockResourceIT {
         stockService.save(stock);
         // Borrow the book
         restStockMockMvc.perform(patch("/api/stocks/{id}/return", stock.getId())
-            .accept(APPLICATION_JSON_UTF8))
+            .accept(APPLICATION_JSON))
             .andExpect(status().isAccepted())
             .andExpect(content().string(isEmptyOrNullString()));
 
@@ -519,7 +519,7 @@ public class StockResourceIT {
         stockService.save(stock);
         // Borrow the book
         restStockMockMvc.perform(patch("/api/stocks/{id}/return", stock.getId())
-            .accept(APPLICATION_JSON_UTF8))
+            .accept(APPLICATION_JSON))
             .andExpect(status().isForbidden())
             .andExpect(content().contentType(APPLICATION_PROBLEM_JSON))
             .andExpect(jsonPath("$.errorKey").value(OUT_OF_BORROW.errorKey()))

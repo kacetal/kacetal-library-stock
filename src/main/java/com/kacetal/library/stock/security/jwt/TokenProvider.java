@@ -9,7 +9,6 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,6 +17,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.PostConstruct;
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Arrays;
@@ -26,7 +26,7 @@ import java.util.Date;
 import java.util.stream.Collectors;
 
 @Component
-public class TokenProvider implements InitializingBean {
+public class TokenProvider {
 
     private static final String AUTHORITIES_KEY = "auth";
 
@@ -44,8 +44,8 @@ public class TokenProvider implements InitializingBean {
         this.jHipsterProperties = jHipsterProperties;
     }
 
-    @Override
-    public void afterPropertiesSet() {
+    @PostConstruct
+    public void init() {
         byte[] keyBytes;
         String secret = jHipsterProperties.getSecurity().getAuthentication().getJwt().getSecret();
         if (!StringUtils.isEmpty(secret)) {

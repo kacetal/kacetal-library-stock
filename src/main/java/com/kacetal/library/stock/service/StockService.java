@@ -28,7 +28,6 @@ public interface StockService {
      */
     Page<Stock> findAll(Pageable pageable);
 
-
     /**
      * Get the "id" stock.
      *
