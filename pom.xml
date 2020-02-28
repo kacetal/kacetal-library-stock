@@ -666,9 +666,9 @@
                     <version>${jib-maven-plugin.version}</version>
                     <configuration>
                         <from>
-                            <!-- adoptopenjdk:12.0.2_10-jre-hotspot-bionic -->
+                            <!-- openjdk:13.0.2 -->
                             <image>
-                                adoptopenjdk@sha256:2d755ee3464690512be367496028bb3061f0af310043f21c3e820bcb11d0d55c
+                                openjdk@sha256:ea1cd435a6b4a681321586aa0768c6ce939fbec5bd3cbd08665fec3c5c9e07b9
                             </image>
                         </from>
                         <to>
